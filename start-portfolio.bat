@@ -1,0 +1,6 @@
+@echo off
+echo Setting up Node.js environment...
+set "PATH=C:\Program Files\nodejs;%PATH%"
+echo Starting development server...
+"C:\Program Files\nodejs\npm.cmd" start
+pause
