@@ -3,7 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Sphere } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useScrollAnimation, useParallax } from '../hooks/useScrollAnimation';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 function FloatingOrb({ position, color }) {
   const meshRef = React.useRef();
@@ -119,8 +119,6 @@ function Contact() {
     triggerOnce: true,
   });
   
-  const { scrollDirection } = useScrollAnimation();
-  const parallaxY = useParallax(0.4);
 
   const contactInfo = [
     {
@@ -152,8 +150,7 @@ function Contact() {
   return (
     <motion.section 
       id="contact"
-      className="relative min-h-screen py-32 px-4 overflow-hidden bg-railway-dark"
-      style={{ transform: `translateY(${parallaxY}px)` }}
+      className="relative py-12 md:py-16 px-4 sm:px-6 lg:px-8"
     >
       {/* 3D Background */}
       <div className="absolute inset-0 opacity-30">
@@ -166,13 +163,13 @@ function Contact() {
         </Canvas>
       </div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto w-full relative z-10">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-12"
         >
           <h2 className="text-display font-black text-railway-text mb-4 tracking-tight">
             Contact
@@ -182,16 +179,16 @@ function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12">
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-8"
+            className="space-y-6 md:space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold text-railway-text mb-6">Get In Touch</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-railway-text mb-5 md:mb-6">Get In Touch</h3>
               <div className="space-y-4">
                 {contactInfo.map((contact, index) => (
                   <motion.a
